@@ -1,0 +1,3 @@
+<div id="mapbase">
+	<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?q=select+col0+from+1ervEc3hdJuXugE3T89FrbjZDzpJ8AlzxWVL5t2p_+where+col3+in+(&#39;JP&#39;%2C+&#39;JU&#39;)+and+col4+in+(&#39;CEMPAKA+PUTIH&#39;%2C+&#39;CILINCING&#39;%2C+&#39;GAMBIR&#39;%2C+&#39;JOHAR+BARU&#39;%2C+&#39;KELAPA+GADING&#39;%2C+&#39;KEMAYORAN&#39;%2C+&#39;KOJA&#39;%2C+&#39;MENTENG&#39;%2C+&#39;PADEMANGAN&#39;%2C+&#39;PENJARINGAN&#39;%2C+&#39;SAWAH+BESAR&#39;%2C+&#39;SENEN&#39;%2C+&#39;TANAH+ABANG&#39;%2C+&#39;TANJUNG+PRIOK&#39;)&amp;viz=MAP&amp;h=false&amp;lat=-6.147659986419041&amp;lng=106.8521175965484&amp;t=1&amp;z=12&amp;l=col0&amp;y=2&amp;tmplt=2&amp;hml=KML"></iframe>
+</div>
