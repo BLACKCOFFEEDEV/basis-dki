@@ -15,9 +15,13 @@ body {
     height: 400px;
     margin: -100px -7% 0 -7%;
 }
-.map {
-    margin: 100px auto 10px auto;
-    height: 90%;
+#maps_box {
+    height: 410px;
+    margin: -100px -7% 0 -7%;
+}
+#mapid {
+    margin: 100px auto 0px auto;
+    height: 100%;
     width: 87%;
 }
 .controls {
@@ -32,16 +36,29 @@ body {
 }
 #pac-input {
     background-color: #fff;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        margin-left: 5px;
-        padding: 0 11px 0 13px;
-        text-overflow: ellipsis;
-        width: 50%;
-
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 10px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 50%;
 }
 #pac-input:focus {
+    border-color: #4d90fe;
+}
+#pac-in {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 10px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 50%;
+    border-radius: 5px;
+}
+#pac-in:focus {
     border-color: #4d90fe;
 }
 .pac-container {
@@ -59,4 +76,72 @@ body {
 }
 #target {
     width: 345px;
+}
+#checkboxes {
+    margin: auto auto 20px auto;
+    color: #fff;
+    font-family: 'Roboto', 'sans-serif';
+    font-size: 14px;
+    background-color: #009b21;
+    box-shadow: 1px 1px 2px #606060;
+    border-radius: 0 5px 5px 0;
+    padding: 0px 10px 0px 10px;
+    line-height: 30px;
+    z-index: 5;
+    float: left;
+}
+#findcheckes {
+    margin: auto auto 20px auto;
+    color: #fff;
+    font-family: 'Roboto', 'sans-serif';
+    font-size: 14px;
+    background-color: #2e6cd1;
+    box-shadow: 1px 1px 2px #606060;
+    border-radius: 5px 0 0 5px;
+    padding: 0px 10px 0px 10px;
+    border: none;
+    line-height: 30px;
+    z-index: 5;
+    float: right;
+}
+#printboxes {
+    margin: 10px auto auto auto;
+    color: #fff;
+    background-color: #444444;
+    box-shadow: 1px 1px 1px #777777;
+    border: none;
+    z-index: 5;
+}
+#rulerboxes {
+    margin: 10px 10px auto auto;
+    color: #fff;
+    background-color: #444444;
+    box-shadow: 1px 1px 1px #777777;
+    border: none;
+    z-index: 5;
+}
+#findboxes {
+    margin: 10px auto auto 10px;
+    left: 10px;
+    width: 300px;
+    z-index: 5;
+}
+.form-control {
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 100;
+    border-radius: 5px;
+}
+.input-group .input-group-addon {
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 100;
+    border-radius: 5px 0 0 5px;
+}
+#selectplan {
+    margin: 10px auto 10px auto;
+    border: none;
+}
+#runsubmit{
+     box-shadow: 1px 1px 1px #777777;
 }
