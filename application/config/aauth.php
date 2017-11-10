@@ -145,7 +145,7 @@ $config_aauth["default"] = array(
  'pm_cleanup_max_age'             => "3 months",
 );
 
-$config['Aauth'] = $config_aauth['default'];
+$config['aauth'] = $config_aauth['default'];
 
 /* End of file aauth.php */
 /* Location: ./application/config/aauth.php */
