@@ -127,6 +127,7 @@
 
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary" onclick="freeze()"><i class="fa fa-save"></i> Update</button>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmation"><i class="fa fa-close"></i> Cancel </button>
                         </div>
                     </form>
                 </div>
@@ -134,6 +135,25 @@
         </div>
     </section>
 
+</div>
+
+<div class="modal fade" id="confirmation">
+    <div class="modal-dialog" style="max-width: 350px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>are you sure you will leave this page? You will lose the data you have changed.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="backPage('<?php echo base_url("member/register")?>')" data-dismiss="modal" class="btn btn-danger pull-left">Yes, Leave this</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Keep this</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">

@@ -180,5 +180,9 @@
     function unfreeze() {
         $("#loading").modal("hide");
     }
+
+    function backPage(url) {
+        this.document.location.href = url;
+    }
 </script>
 </body>

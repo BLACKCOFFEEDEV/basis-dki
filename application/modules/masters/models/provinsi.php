@@ -5,9 +5,9 @@
  * @author		Syahril Hermana (syahril.hermana@gmail.com)
  */
 
-class Izinusaha extends CI_Model
+class provinsi extends CI_Model
 {
-    var $table = 'izinusaha_surat';
+    var $table = 'master_provinsi';
     var $primary_key = 'id';
     var $column_order = array(null, 'name');
     var $column_search = array('name');

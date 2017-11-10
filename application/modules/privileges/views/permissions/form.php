@@ -28,6 +28,9 @@
                                 <select name="navigation" class="form-control" required="required">
                                     <?php foreach ($navigations as $navigation) : ?>
                                     <option value="<?php echo $navigation->id ?>"><?php echo $navigation->label ?></option>
+                                        <?php foreach (get_child($navigation->id) as $child) : ?>
+                                        <option value="<?php echo $child->id ?>">&nbsp;&nbsp;&nbsp;<?php echo $child->label ?></option>
+                                        <?php endforeach; ?>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

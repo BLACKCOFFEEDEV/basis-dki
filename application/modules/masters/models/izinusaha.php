@@ -5,9 +5,9 @@
  * @author		Syahril Hermana (syahril.hermana@gmail.com)
  */
 
-class Surattanah extends CI_Model
+class izinusaha extends CI_Model
 {
-    var $table = 'assets_legality';
+    var $table = 'izinusaha_surat';
     var $primary_key = 'id';
     var $column_order = array(null, 'name');
     var $column_search = array('name');

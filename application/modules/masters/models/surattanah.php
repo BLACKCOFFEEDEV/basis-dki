@@ -5,9 +5,9 @@
  * @author		Syahril Hermana (syahril.hermana@gmail.com)
  */
 
-class Provinsi extends CI_Model
+class surattanah extends CI_Model
 {
-    var $table = 'master_provinsi';
+    var $table = 'assets_legality';
     var $primary_key = 'id';
     var $column_order = array(null, 'name');
     var $column_search = array('name');

@@ -76,7 +76,7 @@ class Permissions extends MY_Controller
             $this->load->model('Generals', 'nav');
             $data = array(
                 "group" => $key,
-                "navigations" => $this->nav->get_list()
+                "navigations" => $this->nav->get_list_parent()
             );
             $this->template->content->view('permissions/form', $data);
         }
@@ -84,7 +84,7 @@ class Permissions extends MY_Controller
             $this->template->title = 'Create New Permission';
 
             $data = array(
-                "navigations" => $this->nav->get_list()
+                "navigations" => $this->nav->get_list_parent()
             );
             $this->template->content->view('permissions/form', $data);
         }
