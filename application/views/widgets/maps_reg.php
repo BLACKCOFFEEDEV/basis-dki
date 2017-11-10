@@ -1,6 +1,6 @@
 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
 <div id=maps_container>
-    <div id="map-canvas" class="fck-map" style=" box-shadow: 8px 8px 8px #888888;"></div>
+    <div id="map-canvas" style=" box-shadow: 5px 5px 5px #888888;"></div>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApHNWWzhT1JLH4rmcYR9SCjl1LO_yoMm0&libraries=places,drawing,geometry&.js&callback=initMap" async defer></script>
 <script>
@@ -126,7 +126,7 @@
                     map: map
                 });
             });
-            google.maps.event.addDomListener(byId('clear_shapes'), 'click', function(event) {
+            google.maps.event.addDomListener(byId('clear_shapes'), 'click', function() {
                 for (var i = 0; i < shapes.length; ++i) {
                     shapes[i].setMap(null);
                 }
@@ -160,8 +160,8 @@
         function formatNumber(num) {
             var p = num.toFixed(2).split(".");
             return p[0].split("").reverse().reduce(function(acc, num, i, orig) {
-                return num + (i && !(i % 3) ? "," : "") + acc;
-            }, "") + "." + p[1];
+                return num + (i && !(i % 3) ? "." : "") + acc;
+            }, "") + "," + p[1];
         }
 
         var IO = {

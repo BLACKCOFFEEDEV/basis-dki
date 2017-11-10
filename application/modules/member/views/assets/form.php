@@ -6,9 +6,9 @@
             Registrasi Assets
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="#">Form Member</a></li>
-            <li class="active">Form Registrasi</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Member</a></li>
+            <li><a href="#">Form Registrasi</a></li>
+            <li class="active">Form Assets</li>
         </ol>
     </section>
 
@@ -101,16 +101,18 @@
                             </div>
                             <div class="form-group">
                                 <input class="form-control" name="marker_polygon" id="geoMet" placeholder="Polygon"
-                                       readonly type="text">
+                                       readonly type="hidden">
                             </div>
-                            <div class="form-group">
-                                <input class="form-control" name="marker_polygon" id="sqmeters" placeholder="Luas  Polygon" readonly
-                                       type="text">
+                            <div class="input-group">
+                                <span class="input-group-addon">m²</span>
+                                <input class="form-control" placeholder="Luas  Polygon" id="sqmeters" type="text" readonly>
                             </div>
-                            <div class="form-group">
-                                <input class="form-control" name="marker_polygon" id="acres" placeholder="Hektar Polygon" readonly
-                                       type="text">
+                            <br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">ha</span>
+                                <input class="form-control" placeholder="Hektar Polygon" id="acres" type="text" readonly>
                             </div>
+                            <br/>
                             <div class="form-group">
                                 <input class="form-control" name="marker_polygon" id="" placeholder="Luas di Sertifikat"
                                        type="text">
@@ -120,10 +122,11 @@
                                        type="text">
                                 <span class="help-block with-errors"><?php echo form_error("marker_type"); ?></span>
                             </div>
-                            <div class="form-group">
-                                <input class="form-control" name="" placeholder="Rp.    " type="text">
-                                <span class="help-block with-errors"><?php echo form_error("marker_type"); ?></span>
+                            <div class="input-group">
+                                <span class="input-group-addon">Rp</span>
+                                <input class="form-control" placeholder="Harga" type="text" readonly>
                             </div>
+                            <br/>
                             <div class="form-group">
                                 <select class="form-control select2 select2-hidden-accessible" style="width: 100%;"
                                         tabindex="-1" aria-hidden="true">
