@@ -63,10 +63,12 @@ class Assets extends MY_Controller {
             $this->load->model('Marked', 'model');
             $account = $this->account->get_account($member);
             $list_profince = $this->model->provinsi("DKI Jakarta");
+            $list_legal = $this->model->get_list_legal();
                         
             $data = array(
                 "account" => $account,
-                "list_province" => $list_profince
+                "list_province" => $list_profince,
+                "list_legal" => $list_legal
             );
             $this->template->content->view('assets/form', $data);
 

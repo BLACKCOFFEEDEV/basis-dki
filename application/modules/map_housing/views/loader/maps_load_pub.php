@@ -119,8 +119,5 @@
 </script>
 
 <div id="checkboxes">
-    <form>
         <input type="checkbox" value="1nglRHF_nexiAjSYOqjvSBD6iNQdMAq6i207HsKpR" id="layer" onclick="changeLayer(this.value);" checked="checked"> Zona Kawasan </input>
-        <br />
-    </form>
 </div>

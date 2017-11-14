@@ -8,22 +8,7 @@ class Marked extends CI_Model {
     var $order = array('id' => 'asc');
     var $deleted = array('deleted_at' => DateTime::ATOM);
 
-    /**
-    
-    
-                       'marker_polygon',
-                       'aauth_accounts',
-                       'aauth_member',
-                       'master_negara',
-                       'master_provinsi',
-                       'master_kota',
-                       'master_kecamatan',
-                       'master_kelurahan',
-                       'assets_legality',
-                       'assets_existtype',
-                       'exist_type'
-     * Generator field for search table
-     */
+    // Generator field for search table
     private function _get_field_query()
     {
 
@@ -99,6 +84,14 @@ class Marked extends CI_Model {
         }
         
         return $this->db->get()->result();
+    }
+    public function get_list_legal($limit = FALSE, $offset = FALSE){
+        $this->db->from('assets_legality');
+        if ($limit) {
+            return $this->db->limit($limit, $offset)->get()->result();
+        } else {
+            return $this->db->get()->result();
+        }
     }
     
 }

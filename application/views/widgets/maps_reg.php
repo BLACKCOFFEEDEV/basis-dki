@@ -381,5 +381,13 @@
             map.fitBounds(bounds);
         });
     }
+    function clrMapsForm(){
+            $('#geoMet').val(''),
+            $('#sqmeters').val(''),
+            $('#acres').val('');
+    }
+    function goBack() {
+        window.history.back();
+    }
 
 </script>
