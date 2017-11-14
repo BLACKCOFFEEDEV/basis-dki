@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/face/back/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') ?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/face/back/bower_components/select2/dist/css/select2.min.css')?>">
 <script src="<?php echo base_url('assets/face/back/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/face/back/bower_components/select2/dist/js/select2.full.min.js')?>"></script>
 
 <div class="content-wrapper">
     <section class="content-header">
@@ -123,6 +125,14 @@
                                     <input type="text" class="form-control pull-right" name="member-until" id="expired" placeholder="Expired Date" value="<?php if(isset($object)) echo $object->member_until ?>" required="required">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Group *</label>
+                                <select class="form-control select2" name="user-group[]" multiple="multiple" data-placeholder="Select a Group" style="width: 100%;">
+                                    <?php foreach ($list_groups as $group) : ?>
+                                    <option value="<?php echo $group->id ?>"><?php echo $group->name ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="box-footer">
@@ -144,6 +154,7 @@
         $('#expired').datepicker({
             autoclose: true
         });
+        $('.select2').select2();
     });
 
     function loadProvince(object) {

@@ -88,11 +88,11 @@ class Aauth {
 			$this->CI->load->library('driver');
 		}
 		$this->CI->load->library('session');
-		$this->CI->lang->load('Aauth');
+		$this->CI->lang->load('aauth');
 
  		// config/aauth.php
-		$this->CI->config->load('Aauth');
-		$this->config_vars = $this->CI->config->item('Aauth');
+		$this->CI->config->load('aauth');
+		$this->config_vars = $this->CI->config->item('aauth');
 
 		$this->aauth_db = $this->CI->load->database($this->config_vars['db_profile'], TRUE); 
 		

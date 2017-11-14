@@ -29,7 +29,7 @@ class Legality extends MY_Controller
         $start = (!empty($_POST['start'])) ? $_POST['start'] : 0;
         $draw  = (!empty($_POST['draw'])) ? $_POST['draw'] : 10;
 
-        $this->load->model('Surattanah', 'model');
+        $this->load->model('surattanah', 'model');
         $list = $this->model->get_list($length, $start);
 
         $data = array();
@@ -61,7 +61,7 @@ class Legality extends MY_Controller
         if($key) {
             $this->template->title = 'Legality Update';
 
-            $this->load->model('Surattanah', 'model');
+            $this->load->model('surattanah', 'model');
             $data = array(
                 "object" => $this->model->get($key)
             );
@@ -82,7 +82,7 @@ class Legality extends MY_Controller
         $this->form_validation->set_rules('name', 'Legality is required', 'required');
 
         if($this->form_validation->run() == true) {
-            $this->load->model('Surattanah', 'model');
+            $this->load->model('surattanah', 'model');
             $key = $this->input->post('id');
             $result = false;
             $object = array(

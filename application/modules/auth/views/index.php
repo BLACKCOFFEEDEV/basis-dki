@@ -1,6 +1,6 @@
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index2.html"><b>Admin</b>BASIS-DKI</a>
+        <a href="../../index2.html"><b>Sign In</b> to BASIS DKI</a>
     </div>
 
     <div class="login-box-body">

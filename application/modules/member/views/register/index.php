@@ -43,7 +43,7 @@
                                             <th>Address</th>
                                             <th>Phone</th>
                                             <th>Subscribe until</th>
-                                            <th width="150px;">Action</th>
+                                            <th width="230px;">Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -62,7 +62,7 @@
                                 </div>
 
                                 <div class="box-body">
-                                    <table id="dataemployee" class="table table-bordered table-hover">
+                                    <table id="dataemployee" class="table table-bordered table-hover" style="width: 100%;">
                                         <thead>
                                         <tr>
                                             <th>#</th>

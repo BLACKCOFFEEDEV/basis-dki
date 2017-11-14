@@ -5,7 +5,7 @@
  * @author		Syahril Hermana (syahril.hermana@gmail.com)
  */
 
-class Surattanah extends CI_Model
+class surattanah extends CI_Model
 {
     var $table = 'assets_legality';
     var $primary_key = 'id';

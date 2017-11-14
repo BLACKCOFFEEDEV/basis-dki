@@ -341,6 +341,10 @@ class Members extends CI_Model
         return $this->db->get("master_kelurahan")->result();
     }
 
+    public function get_list_group() {
+        return $this->db->get("aauth_groups")->result();
+    }
+
     public function save_account($object) {
         $this->db->insert("aauth_accounts", $object);
         return $this->db->insert_id();

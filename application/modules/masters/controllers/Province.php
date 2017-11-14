@@ -29,7 +29,7 @@ class Province extends MY_Controller
         $start = (!empty($_POST['start'])) ? $_POST['start'] : 0;
         $draw  = (!empty($_POST['draw'])) ? $_POST['draw'] : 10;
 
-        $this->load->model('Provinsi', 'model');
+        $this->load->model('provinsi', 'model');
         $list = $this->model->get_list($length, $start);
 
         $data = array();
@@ -63,7 +63,7 @@ class Province extends MY_Controller
         if($key) {
             $this->template->title = 'Province Update';
 
-            $this->load->model('Provinsi', 'model');
+            $this->load->model('provinsi', 'model');
             $data = array(
                 "object" => $this->model->get($key),
                 "list_negara" => $this->negara->get_list()
@@ -88,7 +88,7 @@ class Province extends MY_Controller
         $this->form_validation->set_rules('country', 'Country is required', 'required');
 
         if($this->form_validation->run() == true) {
-            $this->load->model('Provinsi', 'model');
+            $this->load->model('provinsi', 'model');
             $key = $this->input->post('id');
             $result = false;
             $object = array(

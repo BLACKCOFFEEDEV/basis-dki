@@ -44,8 +44,8 @@ class Register extends MY_Controller
             $row[] = $object->address;
             $row[] = $object->phone;
             $row[] = $object->member_until;
-            $row[] = '<a href="'.base_url("member/assets/form/").$object->id.'" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add Asset</a>
-            <a href="'.base_url("member/register/member/").$object->id.'" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Update</a>
+            $row[] = '<a href="'.base_url("member/assets/form/").$object->id.'" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add Asset</a>
+                    <a href="'.base_url("member/register/member/").$object->id.'" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Update</a>
 					<button type="button" id="delete" class="btn btn-default btn-sm btn-danger" data-toggle="modal" data-target="#confirmation" onclick="set_value('.$object->id.');"><i class="fa fa-ban"></i> Ban User</button>';
 
             $data[] = $row;
@@ -72,7 +72,8 @@ class Register extends MY_Controller
             $data = array(
                 "object" => $this->model->get_member($key),
                 "user" => $this->aauth->get_user($this->model->get_member($key)->user_id),
-                "list_negara" => $this->model->get_list_country()
+                "list_negara" => $this->model->get_list_country(),
+                "list_groups" => $this->model->get_list_group()
             );
             $this->template->content->view('register/member-form-update', $data);
         }
@@ -80,7 +81,8 @@ class Register extends MY_Controller
             $this->template->title = 'Create New Member';
 
             $data = array(
-                "list_negara" => $this->model->get_list_country()
+                "list_negara" => $this->model->get_list_country(),
+                "list_groups" => $this->model->get_list_group()
             );
             $this->template->content->view('register/member-form', $data);
         }
@@ -173,7 +175,53 @@ class Register extends MY_Controller
         else {
             $this->session->set_flashdata('error', 'Data not saved, please try again.');
             $this->session->keep_flashdata('error');
-            redirect('privileges/groups');
+            redirect('member/register');
+        }
+    }
+
+    public function update_member()
+    {
+        $this->form_validation->set_rules('account-id', 'is required', 'required');
+
+        if($this->form_validation->run() == true) {
+            $this->load->model('Members', 'model');
+            $this->load->model('Account', 'account');
+            $key = $this->input->post('account-id');
+            $result = false;
+            $session = $this->account->get_account($key);
+
+            // update user
+            if(strlen($this->input->post('user-email')) > 0){
+                $email = $this->input->post('user-email');
+                $this->aauth->update_user($session->user_id, $email);
+            }
+
+            // update account
+            if(strlen($this->input->post('account-first-name')) > 0)
+                $account['first_name'] = $this->input->post('account-first-name');
+
+            if(strlen($this->input->post('account-last-name')) > 0)
+                $account['last_name'] = $this->input->post('account-last-name');
+
+            if(strlen($this->input->post('account-place-of-birth')) > 0)
+                $account['place_of_birth'] = $this->input->post('account-place-of-birth');
+
+
+            if($result) {
+                $this->session->set_flashdata('success', 'Data has been saved.');
+                $this->session->keep_flashdata('success');
+            }
+            else {
+                $this->session->set_flashdata('error', 'Data not saved, please try again.');
+                $this->session->keep_flashdata('error');
+            }
+
+            redirect('member/register');
+        }
+        else {
+            $this->session->set_flashdata('error', 'Data not saved, please try again.');
+            $this->session->keep_flashdata('error');
+            redirect('member/register');
         }
     }
 
@@ -200,7 +248,7 @@ class Register extends MY_Controller
             $row[] = $object->phone;
             $row[] = get_custom_field("master_office", "name", "id", $object->office);
             $row[] = '<a href="'.base_url("privileges/groups/form/").$object->id.'" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Update</a>
-					<button type="button" id="delete" class="btn btn-default btn-sm btn-danger" data-toggle="modal" data-target="#confirmation" onclick="set_value('.$object->id.');"><i class="fa fa-trash"></i> Delete</button>';
+					<button type="button" id="delete" class="btn btn-default btn-sm btn-danger" data-toggle="modal" data-target="#confirmation" onclick="set_value('.$object->id.');"><i class="fa fa-ban"></i> Ban User</button>';
 
             $data[] = $row;
         }

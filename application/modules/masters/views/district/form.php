@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">State *</label>
                                 <input type="hidden" name="id" value="<?php if(isset($object)) echo $object->id ?>">
-                                <select name="city" class="form-control" required="required">
+                                <select name="state" class="form-control" required="required">
                                     <?php foreach ($list_kecamatan as $kecamatan) : ?>
                                     <option value="<?php echo $kecamatan->id ?>" <?php if(isset($object)) { if($object->kecamatan_id == $kecamatan->id) echo 'selected = "selected"'; } ?>><?php echo $kecamatan->name ?></option>
                                     <?php endforeach; ?>

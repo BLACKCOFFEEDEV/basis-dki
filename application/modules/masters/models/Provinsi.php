@@ -5,7 +5,7 @@
  * @author		Syahril Hermana (syahril.hermana@gmail.com)
  */
 
-class Provinsi extends CI_Model
+class provinsi extends CI_Model
 {
     var $table = 'master_provinsi';
     var $primary_key = 'id';

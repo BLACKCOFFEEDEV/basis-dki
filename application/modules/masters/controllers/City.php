@@ -60,7 +60,7 @@ class City extends MY_Controller
 
     public function form($key=false)
     {
-        $this->load->model('Provinsi', 'provinsi');
+        $this->load->model('provinsi', 'provinsi');
         if($key) {
             $this->template->title = 'City Update';
 
