@@ -34,7 +34,7 @@
                                 </div>
 
                                 <div class="box-body">
-                                    <table id="datamembers" class="table table-bordered table-hover">
+                                    <table id="datamembers" class="table table-bordered table-hover" style="width: 100%;">
                                         <thead>
                                         <tr>
                                             <th>#</th>
@@ -43,7 +43,7 @@
                                             <th>Address</th>
                                             <th>Phone</th>
                                             <th>Subscribe until</th>
-                                            <th width="230px;">Action</th>
+                                            <th width="75px;">Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
