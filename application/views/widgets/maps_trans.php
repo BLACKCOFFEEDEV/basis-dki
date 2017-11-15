@@ -74,17 +74,6 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApHNWWzhT1JLH4rmcYR9SCjl1LO_yoMm0&libraries=places,drawing,geometry&.js"></script>
 
 <script>
-(function(window, google) {
-        var options = {
-                center: {
-                    lat: -6.181908,
-                    lng: 106.828249
-                }
-            },
-            element = document.getElementById('mapid'),
-            map = new google.maps.Map(element, options);
-}(window, google));
-
     var optLayer = {
             query: {
                 select: 'Jakarta\'',
@@ -138,6 +127,15 @@
 
         var findPanel = document.getElementById('findboxes');
         map.controls[google.maps.ControlPosition.LEFT_TOP].push(findPanel);
+        
+                        <?php foreach($geometry as $i):?>
+                        
+                        map.data.addGeoJson(<?php echo $i->polygon_geometry; ?>);
+                        
+                        <?php endforeach ?>
+
+            
+        
     }
 
     function codeAddress() {
@@ -204,7 +202,7 @@
 
     function resetMap() {
         google.maps.event.addDomListener(document.getElementById("clear_it"), 'click', function() {
-            
+
         });
 
 

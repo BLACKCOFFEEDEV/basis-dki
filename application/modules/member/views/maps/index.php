@@ -23,7 +23,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-
+                        
                         <?php echo $this->template->widget("Mapstrans"); ?>
 
                     </div>

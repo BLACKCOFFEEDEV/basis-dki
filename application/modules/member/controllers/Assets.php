@@ -70,6 +70,9 @@ class Assets extends MY_Controller {
                 "list_province" => $list_profince,
                 "list_legal" => $list_legal
             );
+
+            //print_r($data);
+            //die();
             $this->template->content->view('assets/form', $data);
 
             $this->template->publish();

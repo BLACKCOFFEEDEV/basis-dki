@@ -176,8 +176,7 @@
                 for (var i = 0; i < arr.length; i++) {
                     shape = arr[i];
                     tmp = {
-                        type: this.t_(shape.type),
-                        id: shape.id || 1
+                        type: this.t_(shape.type)
                     };
 
                     switch (tmp.type) {
@@ -195,7 +194,7 @@
                             tmp.geometry = this.l_(shape.getPath(), encoded);
                             break;
                         case 'POLYGON':
-                            tmp.geometry = this.m_(shape.getPaths(), encoded);
+                            tmp.coordinates = this.m_(shape.getPaths(), encoded);
 
                             break;
                     }
