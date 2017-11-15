@@ -44,9 +44,20 @@ class Register extends MY_Controller
             $row[] = $object->address;
             $row[] = $object->phone;
             $row[] = $object->member_until;
-            $row[] = '<a href="'.base_url("member/assets/form/").$object->id.'" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add Asset</a>
-                    <a href="'.base_url("member/register/member/").$object->id.'" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> Update</a>
-					<button type="button" id="delete" class="btn btn-default btn-sm btn-danger" data-toggle="modal" data-target="#confirmation" onclick="set_value('.$object->id.');"><i class="fa fa-ban"></i> Ban User</button>';
+            $row[] = '<div class="btn-group">
+                          <button type="button" class="btn btn-default">Action</button>
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="'.base_url("member/assets/form/").$object->id.'">Add Asset</a></li>
+                            <li><a href="'.base_url("member/register/permit/").$object->id.'">Add Permit</a></li>
+                            <li><a href="'.base_url("member/register/member/").$object->id.'">Member Update</a></li>
+                            <li class="divider"></li>
+                            <li><a href="javascript:void(0);" data-toggle="modal" data-target="#confirmation" onclick="set_value('.$object->id.');">Ban Member</a></li>
+                          </ul>
+                        </div>';
 
             $data[] = $row;
         }
@@ -85,6 +96,34 @@ class Register extends MY_Controller
                 "list_groups" => $this->model->get_list_group()
             );
             $this->template->content->view('register/member-form', $data);
+        }
+
+        $this->template->publish();
+    }
+
+    public function permit($account, $key = false)
+    {
+        $this->load->model('Members', 'model');
+
+        if($key) {
+            $this->template->title = 'Member Permit Update';
+
+            $data = array(
+                "object" => $this->model->get_member($key),
+                "user" => $this->aauth->get_user($this->model->get_member($key)->user_id),
+                "list_negara" => $this->model->get_list_country(),
+                "list_groups" => $this->model->get_list_group()
+            );
+            $this->template->content->view('register/member-form-update', $data);
+        }
+        else {
+            $this->template->title = 'Create New Member Permit';
+
+            $data = array(
+                "list_negara" => $this->model->get_list_country(),
+                "list_groups" => $this->model->get_list_group()
+            );
+            $this->template->content->view('register/member-permit-form', $data);
         }
 
         $this->template->publish();
@@ -145,7 +184,8 @@ class Register extends MY_Controller
                     'ktp' => $this->input->post('member-ktp'),
                     'ktp_address' => $this->input->post('member-address'),
                     'member_until' => date('Y-m-d', strtotime($date)),
-                    'member_since' => date('Y-m-d')
+                    'member_since' => date('Y-m-d'),
+                    'pin' => $this->_generate_unique_pin($this->_randomize_token(8))
                 );
 
                 $this->model->save_member($member);

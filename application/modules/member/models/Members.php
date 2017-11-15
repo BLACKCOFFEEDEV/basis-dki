@@ -354,4 +354,12 @@ class Members extends CI_Model
         $this->db->insert("aauth_member", $object);
         return $this->db->insert_id();
     }
+
+    function is_unique($pin)
+    {
+        $this->db->from("aauth_member");
+        $this->db->where("pin", $pin);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
 }
