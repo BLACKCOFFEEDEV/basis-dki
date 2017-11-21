@@ -1,4 +1,6 @@
+<div style="display:none;">
 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+</div>
 <div id=maps_container>
     <div id="map-canvas" style=" box-shadow: 5px 5px 5px #888888;"></div>
 </div>

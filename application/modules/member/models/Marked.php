@@ -13,8 +13,8 @@ class Marked extends CI_Model {
     {
 
         $this->db->from($this->table);
-        $this->db->join('aauth_accounts', 'aauth_accounts.id=member_assets.user_id',"left");
-        $this->db->join('aauth_member', 'aauth_member.account_id=member_assets.user_id and aauth_accounts.id=aauth_member.account_id',"left");
+        $this->db->join('aauth_accounts', 'aauth_accounts.id=member_assets.account_id',"left");
+        $this->db->join('aauth_member', 'aauth_member.account_id=member_assets.account_id and aauth_accounts.id=aauth_member.account_id',"left");
         
 
         $i = 0;
@@ -85,7 +85,8 @@ class Marked extends CI_Model {
         
         return $this->db->get()->result();
     }
-    public function get_list_legal($limit = FALSE, $offset = FALSE){
+    
+    public function get_list_legality($limit = FALSE, $offset = FALSE){        
         $this->db->from('assets_legality');
         if ($limit) {
             return $this->db->limit($limit, $offset)->get()->result();

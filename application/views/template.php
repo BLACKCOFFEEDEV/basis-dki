@@ -34,7 +34,6 @@
     <script src="<?php echo base_url(); ?>assets/face/back/dist/js/adminlte.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/face/back/bower_components/notify.js/notify.min.js"></script>
     <!--CUSTOM CSS-->
-    <link rel="stylesheet" href="<?php echo base_url('assets/face/back/custom_css_widget/modal.css'); ?>">
     <link rel='stylesheet' href="<?php echo base_url(); ?>assets/maps/css/style_adm.css" />
 </head>
 

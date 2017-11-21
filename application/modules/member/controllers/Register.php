@@ -68,7 +68,7 @@ class Register extends MY_Controller
             "recordsFiltered" => $this->model->count_member_filtered(),
             "data" => $data,
         );
-
+        
         if ($this->input->is_ajax_request())
             echo json_encode($output);
     }
