@@ -120,8 +120,8 @@ class Register extends MY_Controller
             $this->template->title = 'Create New Member Permit';
 
             $data = array(
-                "list_negara" => $this->model->get_list_country(),
-                "list_groups" => $this->model->get_list_group()
+                "list_building" => $this->model->get_list_building(),
+                "list_permit" => $this->model->get_list_permit()
             );
             $this->template->content->view('register/member-permit-form', $data);
         }

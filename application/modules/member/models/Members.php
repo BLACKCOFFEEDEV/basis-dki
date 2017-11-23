@@ -355,11 +355,21 @@ class Members extends CI_Model
         return $this->db->insert_id();
     }
 
-    function is_unique($pin)
+    public function is_unique($pin)
     {
         $this->db->from("aauth_member");
         $this->db->where("pin", $pin);
         $query = $this->db->get();
         return $query->num_rows();
+    }
+
+    public function get_list_building()
+    {
+        return $this->db->get("exist_type")->result();
+    }
+
+    public function get_list_permit()
+    {
+        return $this->db->get("izinusaha_surat")->result();
     }
 }
