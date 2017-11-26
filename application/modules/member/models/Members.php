@@ -372,4 +372,14 @@ class Members extends CI_Model
     {
         return $this->db->get("izinusaha_surat")->result();
     }
+
+    public function save_exist_izinusaha($object) {
+        $this->db->insert("exist_izinusaha", $object);
+        return $this->db->insert_id();
+    }
+
+    public function save_assets_type($object) {
+        $this->db->insert("assets_existtype", $object);
+        return $this->db->insert_id();
+    }
 }
