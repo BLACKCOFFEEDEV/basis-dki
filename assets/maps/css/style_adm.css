@@ -8,11 +8,11 @@ body {
 }
 #map-canvas {
     margin: 100px auto 0 auto;
-    height: 95%;
+    height: 99%;
     width: 87%;
 }
 #maps_container {
-    height: 400px;
+    height: 418px;
     margin: -100px -7% 0 -7%;
 }
 #maps_box {

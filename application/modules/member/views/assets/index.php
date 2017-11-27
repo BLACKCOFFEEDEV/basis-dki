@@ -20,7 +20,7 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-<!--                <a href="<?php echo base_url('member/assets/form') ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Create new Assets</a><br/><br/>-->
+<!--                <a href="" class="btn btn-primary"><i class="fa fa-plus"></i> Create new Assets</a><br/><br/>-->
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Assest</h3>

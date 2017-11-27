@@ -1,76 +1,3 @@
-<div id=maps_box>
-    <div id="mapid" style=" box-shadow: 8px 8px 8px #888888;"></div>
-    <div id="findboxes" style="display:none;">
-        <div class="row">
-            <form role="form" method="post" action="">
-                <div class="col-lg-6">
-                    <div class="input-group">
-                        <span class="input-group-addon">Max</span>
-                        <input class="form-control" type="text" placeholder="Rp">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="input-group">
-                        <span class="input-group-addon">Min</span>
-                        <input class="form-control" type="text" placeholder="Rp">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="input-group" style="margin-top:10px;">
-                        <span class="input-group-addon"><i class="fa fa-legal"></i></span>
-                        <input class="form-control" type="text" placeholder="Izin Tempat">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <select id="selectplan" class="form-control" name="">
-                        <option value="">Pilih Rencana</option>
-                    </select>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <select id="city" class="form-control" onchange="loadState(this)">
-                            <option value="">Pilih Kota</option>
-                        </select>
-
-                    </div>
-                    <div class="form-group">
-                        <select id="state" class="form-control" onchange="loadDistrict(this)">
-                            <option value="">Pilih Kecamatan</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select id="district" class="form-control" name="district">
-                            <option value="">Pilih Kelurahan</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input id="runsubmit" type="submit" name="insert" value="Cari" onclick='saveData()' class="btn btn-primary">
-                        <button type="reset" class="btn btn-default">Reset</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div style="display:none;">
-        <div id="findcheckes">
-            <form>
-                <input type="checkbox" id="findform" onclick="showhideFindForm()"> Cari Member
-                <br />
-            </form>
-        </div>
-        <div id="checkboxes">
-            <form>
-                Zona Kawasan
-                <input type="checkbox" value="1nglRHF_nexiAjSYOqjvSBD6iNQdMAq6i207HsKpR" id="layer" onclick="changeLayer(this.value);" checked="checked">
-                <br />
-            </form>
-        </div>
-        <button type="button" id="printboxes" class="btn btn-default"><i class="fa fa-print"></i></button>
-        <button type="button" id="rulerboxes" class="btn btn-default"><i class="fa fa-arrows-h"></i></button>
-        <input id="pac-in" class="controls" type="text-float" placeholder="Lokasi Google">
-    </div>
-</div>
-
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApHNWWzhT1JLH4rmcYR9SCjl1LO_yoMm0&libraries=places,drawing,geometry&.js"></script>
 
 <script>
@@ -99,12 +26,12 @@
             },
             zoom: 14,
             disableDefaultUI: false,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeId: google.maps.MapTypeId.SATELLITE,
             minZoom: 10,
             scaleControl: true,
             fullscreenControl: true,
             mapTypeControlOptions: {
-                position: google.maps.ControlPosition.LEFT_BOTTOM
+                position: google.maps.ControlPosition.RIGHT_TOP
             },
             fullscreenControlOptions: {
                 position: google.maps.ControlPosition.TOP_RIGHT
@@ -127,15 +54,7 @@
 
         var findPanel = document.getElementById('findboxes');
         map.controls[google.maps.ControlPosition.LEFT_TOP].push(findPanel);
-        
-                        <?php foreach($geometry as $i):?>
-                        
-                        map.data.addGeoJson(<?php echo $i->polygon_geometry; ?>);
-                        
-                        <?php endforeach ?>
-
             
-        
     }
 
     function codeAddress() {

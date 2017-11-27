@@ -27,7 +27,7 @@
                             <div id="mapid" style=" box-shadow: 8px 8px 8px #888888;"></div>
                             <div id="findboxes" style="display:none;">
                                 <div class="row">
-                                    <form role="form" method="post" action="<?php echo base_url('member/assets/save')?>">
+                                    <form role="form" method="post" action="">
                                         <div class="col-lg-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon">Max</span>

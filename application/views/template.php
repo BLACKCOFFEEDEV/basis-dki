@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/face/back/bower_components/Ionicons/css/ionicons.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/face/back/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/face/back/dist/css/AdminLTE.min.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/face/back/dist/css/skins/skin-blue.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/face/back/dist/css/skins/_all-skins.min.css'); ?>">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,13 +37,13 @@
     <link rel='stylesheet' href="<?php echo base_url(); ?>assets/maps/css/style_adm.css" />
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-yellow sidebar-mini">
 <div class="wrapper">
     <header class="main-header">
 
         <a href="dashboard" class="logo">
-            <span class="logo-mini"><b>A</b>BD</span>
-            <span class="logo-lg"><b>Admin</b>BASIS-DKI</span>
+            <span class="logo-mini"><b>B</b>D</span>
+            <span class="logo-lg"><b>BASIS</b>DKI</span>
         </a>
 
         <nav class="navbar navbar-static-top" role="navigation">
