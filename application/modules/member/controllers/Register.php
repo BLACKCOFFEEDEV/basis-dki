@@ -120,8 +120,9 @@ class Register extends MY_Controller
             $this->template->title = 'Create New Member Permit';
 
             $data = array(
-                "list_negara" => $this->model->get_list_country(),
-                "list_groups" => $this->model->get_list_group()
+                "list_building" => $this->model->get_list_building(),
+                "list_permit" => $this->model->get_list_permit(),
+                "object" => $this->model->get_member($account)
             );
             $this->template->content->view('register/member-permit-form', $data);
         }
@@ -156,6 +157,7 @@ class Register extends MY_Controller
             $username = preg_replace('/[^A-Za-z0-9]/', '', $username);
 
             $user = $this->aauth->create_user($email, $password, $username);
+            $this->aauth->add_member($user, $this->input->post('user-group'));
 
             if($user) {
                 $date = $this->input->post('account-date-of-birth');
@@ -263,6 +265,48 @@ class Register extends MY_Controller
             $this->session->keep_flashdata('error');
             redirect('member/register');
         }
+    }
+
+    public function save_permit()
+    {
+        $this->form_validation->set_rules('type', 'is required', 'required');
+        $this->form_validation->set_rules('permit', 'is required', 'required');
+        $this->form_validation->set_rules('account', 'is required', 'required');
+        $this->form_validation->set_rules('description', 'is required', 'required');
+        $this->form_validation->set_rules('permit-no', 'is required', 'required');
+        $this->form_validation->set_rules('valid-until', 'is required', 'required');
+
+        if($this->form_validation->run() == true) {
+            $this->load->model('Members', 'model');
+
+            // save exist_izinusaha
+            $data1 = array(
+                "izin_keterangan" => $this->input->post('description'),
+                "masa_berlaku" => date('Y-m-d H:i:s',strtotime($this->input->post('valid-until'))),
+                "no_surat" => $this->input->post('permit-no'),
+                "surat_usaha_id" => $this->input->post('permit')
+            );
+
+            $izin_usaha_id = $this->model->save_exist_izinusaha($data1);
+            if($izin_usaha_id > 0)
+            {
+                $data2 = array(
+                    "izin_usha_id" => $izin_usaha_id,
+                    "type_id" => $this->input->post('type'),
+                    "account_id" => $this->input->post('account')
+                );
+
+                if($this->model->save_assets_type($data2)) {
+                    $this->session->set_flashdata('success', 'Data has been saved.');
+                    $this->session->keep_flashdata('success');
+                }
+            }
+        } else {
+            $this->session->set_flashdata('error', 'Data not saved, please try again.');
+            $this->session->keep_flashdata('error');
+        }
+
+        redirect('member/register');
     }
 
 

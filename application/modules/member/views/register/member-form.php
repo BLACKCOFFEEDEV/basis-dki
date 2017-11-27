@@ -127,7 +127,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Group *</label>
-                                <select class="form-control select2" name="user-group[]" multiple="multiple" data-placeholder="Select a Group" style="width: 100%;">
+                                <select class="form-control" name="user-group" style="width: 100%;">
                                     <?php foreach ($list_groups as $group) : ?>
                                     <option value="<?php echo $group->id ?>"><?php echo $group->name ?></option>
                                     <?php endforeach; ?>
