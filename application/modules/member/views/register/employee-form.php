@@ -6,13 +6,13 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            Member
-            <small>create new member</small>
+            Employee
+            <small>create new employee</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Register</a></li>
-            <li class="active">New Member</li>
+            <li class="active">New Employee</li>
         </ol>
     </section>
 
@@ -21,11 +21,11 @@
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Form Member</h3>
+                        <h3 class="box-title">Form Employee</h3>
                     </div>
 
 
-                    <form role="form" action="<?php echo base_url('member/register/save-member') ?>" method="post" enctype="multipart/form-data">
+                    <form role="form" action="<?php echo base_url('member/register/save-employee') ?>" method="post" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">First Name *</label>
@@ -47,7 +47,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" class="form-control pull-right" data-date-format="yyyy-mm-dd" name="account-date-of-birth" id="dob" placeholder="Date of Birth" value="<?php if(isset($object)) echo $object->definition ?>" required="required">
+                                    <input type="text" class="form-control pull-right" name="account-date-of-birth" id="dob" placeholder="Date of Birth" value="<?php if(isset($object)) echo $object->definition ?>" required="required">
                                 </div>
                             </div>
 
@@ -106,32 +106,25 @@
                                     <textarea class="form-control" rows="7" name="account-address"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Identity Number *</label>
-                                    <input type="text" class="form-control" name="member-ktp" id="ktp" placeholder="Identity Number" value="<?php if(isset($object)) echo $object->ktp ?>" required="required">
-                                    <p class="help-block">e.g. KTP, Passport</p>
+                                    <label for="exampleInputEmail1">NIP *</label>
+                                    <input type="text" class="form-control" name="employee-nip" id="nip" placeholder="Identity Number" value="<?php if(isset($object)) echo $object->nip ?>" required="required">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Address in Identity *</label>
-                                    <textarea class="form-control" rows="8" name="member-address"></textarea>
+                                    <label for="exampleInputEmail1">Office *</label>
+                                    <select class="form-control" name="employee-office" style="width: 100%;">
+                                        <?php foreach ($list_office as $office) : ?>
+                                            <option value="<?php echo $office->id ?>"><?php echo $office->name ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Expired Date *</label>
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <input type="text" class="form-control pull-right" data-date-format="yyyy-mm-dd" name="member-until" id="expired" placeholder="Expired Date" value="<?php if(isset($object)) echo $object->member_until ?>" required="required">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Group *</label>
+                                    <select class="form-control" name="user-group" style="width: 100%;">
+                                        <?php foreach ($list_groups as $group) : ?>
+                                            <option value="<?php echo $group->id ?>"><?php echo $group->name ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Group *</label>
-                                <select class="form-control" name="user-group" style="width: 100%;">
-                                    <?php foreach ($list_groups as $group) : ?>
-                                    <option value="<?php echo $group->id ?>"><?php echo $group->name ?></option>
-                                    <?php endforeach; ?>
-                                </select>
                             </div>
                         </div>
 
@@ -149,11 +142,9 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#dob').datepicker({
-            dateFormat : 'yy-mm-dd',
             autoclose: true
         });
         $('#expired').datepicker({
-            dateFormat : 'yy-mm-dd',
             autoclose: true
         });
         $('.select2').select2();

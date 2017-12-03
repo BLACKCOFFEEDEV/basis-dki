@@ -341,7 +341,16 @@ class Members extends CI_Model
         return $this->db->get("master_kelurahan")->result();
     }
 
-    public function get_list_group() {
+    public function get_list_group($special = FALSE, $condition = "not in") {
+        if($special) {
+            if ($condition == "only") {
+                $this->db->where("id", 3);
+            }
+
+            if ($condition == "not in") {
+                $this->db->where_not_in("id", 3);
+            }
+        }
         return $this->db->get("aauth_groups")->result();
     }
 
@@ -380,6 +389,15 @@ class Members extends CI_Model
 
     public function save_assets_type($object) {
         $this->db->insert("assets_existtype", $object);
+        return $this->db->insert_id();
+    }
+
+    public function get_list_office() {
+        return $this->db->get("master_office")->result();
+    }
+
+    public function save_employee($object) {
+        $this->db->insert("aauth_employee", $object);
         return $this->db->insert_id();
     }
 }

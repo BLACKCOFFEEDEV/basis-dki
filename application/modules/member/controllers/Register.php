@@ -84,7 +84,7 @@ class Register extends MY_Controller
                 "object" => $this->model->get_member($key),
                 "user" => $this->aauth->get_user($this->model->get_member($key)->user_id),
                 "list_negara" => $this->model->get_list_country(),
-                "list_groups" => $this->model->get_list_group()
+                "list_groups" => $this->model->get_list_group(TRUE, "only")
             );
             $this->template->content->view('register/member-form-update', $data);
         }
@@ -93,7 +93,7 @@ class Register extends MY_Controller
 
             $data = array(
                 "list_negara" => $this->model->get_list_country(),
-                "list_groups" => $this->model->get_list_group()
+                "list_groups" => $this->model->get_list_group(TRUE, "only")
             );
             $this->template->content->view('register/member-form', $data);
         }
@@ -178,14 +178,14 @@ class Register extends MY_Controller
 
                 $account_id = $this->model->save_account($account);
 
-                $date = $this->input->post('member-until');
-                $date = date('Y-m-d', strtotime(str_replace('/', '-', $date)));
+                $date2 = $this->input->post('member-until');
+                $date2 = date('Y-m-d', strtotime(str_replace('/', '-', $date2)));
 
                 $member = array(
                     'account_id' => $account_id,
                     'ktp' => $this->input->post('member-ktp'),
                     'ktp_address' => $this->input->post('member-address'),
-                    'member_until' => date('Y-m-d', strtotime($date)),
+                    'member_until' => date('Y-m-d', strtotime($date2)),
                     'member_since' => date('Y-m-d'),
                     'pin' => $this->_generate_unique_pin($this->_randomize_token(8))
                 );
@@ -350,23 +350,118 @@ class Register extends MY_Controller
 
     public function employee($key=false)
     {
-        if($key) {
-            $this->template->title = 'Group Update';
+        $this->load->model('Members', 'model');
 
-            $this->load->model('Group', 'model');
+        if($key) {
+            $this->template->title = 'Employee Update';
+
             $data = array(
-                "object" => $this->model->get($key)
+                "object" => $this->model->get_member($key),
+                "user" => $this->aauth->get_user($this->model->get_member($key)->user_id),
+                "list_negara" => $this->model->get_list_country(),
+                "list_groups" => $this->model->get_list_group(TRUE, "not in")
             );
-            $this->template->content->view('groups/form', $data);
+            $this->template->content->view('register/employee-form-update', $data);
         }
         else {
-            $this->template->title = 'Create New Group';
+            $this->template->title = 'Create New Employee';
 
-            $data = array();
-            $this->template->content->view('groups/form', $data);
+            $data = array(
+                "list_negara" => $this->model->get_list_country(),
+                "list_groups" => $this->model->get_list_group(TRUE, "not in"),
+                "list_office" => $this->model->get_list_office()
+            );
+            $this->template->content->view('register/employee-form', $data);
         }
 
         $this->template->publish();
+    }
+
+    public function save_employee()
+    {
+        $this->form_validation->set_rules('account-first-name', 'is required', 'required');
+        $this->form_validation->set_rules('account-last-name', 'is required', 'required');
+        $this->form_validation->set_rules('account-place-of-birth', 'is required', 'required');
+        $this->form_validation->set_rules('account-date-of-birth', 'is required', 'required');
+        $this->form_validation->set_rules('account-phone', 'is required', 'required');
+        $this->form_validation->set_rules('account-district', 'is required', 'required');
+        $this->form_validation->set_rules('account-address', 'is required', 'required');
+        $this->form_validation->set_rules('employee-nip', 'is required', 'required');
+        $this->form_validation->set_rules('employee-office', 'is required', 'required');
+        $this->form_validation->set_rules('user-email', 'is required', 'required');
+
+        if($this->form_validation->run() == true) {
+            $this->load->model('Members', 'model');
+            $key = $this->input->post('id');
+            $result = false;
+
+            // create user
+            $password = $this->_randomize_token(10);
+            $email = $this->input->post('user-email');
+            $username = explode("@", $email);
+            $username = $username[0];
+            $username = preg_replace('/[^A-Za-z0-9]/', '', $username);
+
+            $user = $this->aauth->create_user($email, $password, $username);
+            $this->aauth->add_member($user, $this->input->post('user-group'));
+
+            if($user) {
+                $date = $this->input->post('account-date-of-birth');
+                $date = date('Y-m-d', strtotime(str_replace('/', '-', $date)));
+
+                $account = array(
+                    'first_name' => $this->input->post('account-first-name'),
+                    'last_name' => $this->input->post('account-last-name'),
+                    'place_of_birth' => $this->input->post('account-place-of-birth'),
+                    'date_of_birth' => date('Y-m-d', strtotime($date)),
+                    'phone' => $this->input->post('account-phone'),
+                    'kelurahan_id' => $this->input->post('account-district'),
+                    'address' => $this->input->post('account-address'),
+                    'user_id' => $user,
+                    'created_by' => $this->aauth->get_user()->id,
+                    'created_date' => date('Y-m-d')
+                );
+
+                $account_id = $this->model->save_account($account);
+
+                $date = $this->input->post('member-until');
+                $date = date('Y-m-d', strtotime(str_replace('/', '-', $date)));
+
+                $employee = array(
+                    'account_id' => $account_id,
+                    'nip' => $this->input->post('employee-nip'),
+                    'office' => $this->input->post('employee-office')
+                );
+
+                $this->model->save_employee($employee);
+                $result = true;
+            }
+
+            if($result) {
+                $this->load->library('email');
+                $this->email->from('mail.bogcamp@gmail.com', 'no-reply@basis.dki');
+                $this->email->to($email);
+                $this->email->subject('Registration Basis DKI');
+                $messages = 'Hey ' . $this->input->post('account-first-name') . ' ' . $this->input->post('account-last-name') . '<br/>';
+                $messages .= 'This your username <b>' . $username . '</b> and password <b>' . $password . '</b>';
+                $this->email->message($messages);
+                $this->email->send();
+
+                $this->session->set_flashdata('success', 'Data has been saved.');
+                $this->session->keep_flashdata('success');
+            }
+            else {
+                $this->session->set_flashdata('error', 'Data not saved, please try again.');
+                $this->session->keep_flashdata('error');
+            }
+
+            redirect('member/register');
+        }
+        else {
+            $this->session->set_flashdata('error', 'Data not saved, please try again.');
+            $this->session->keep_flashdata('error');
+            redirect('member/register');
+        }
     }
 
 
